@@ -25,23 +25,23 @@
 			document.getElementById('content').innerHTML+=`<div class="organization" data-name="${organizations[i]}">
 					<h3>${organizations[i]}</h3>
 					<h5>Repositories</h5>
-					<table class="table">
+					<table class="table repos d-none">
 						<thead>
 							<tr>
 							<th scope="col">Name and description</th>
 							<th scope="col">Last updated</th>
 							</tr>
 						</thead>
-						<tbody class="repos"></tbody>
+						<tbody></tbody>
 					</table>
 					<h5>Projects</h5>
-					<table class="table">
+					<table class="table projects d-none">
 						<thead>
 							<tr>
 							<th scope="col">Name and description</th>
 							</tr>
 						</thead>
-						<tbody class="projects"></tbody>
+						<tbody></tbody>
 					</table>
 				</div>`;
 			fetchOrganizationRepos(organizations[i]);
@@ -56,7 +56,8 @@
 				'Authorization': `token ${token}`
 			}
 		}).then(response => response.json()).then(data => {
-				const container=document.querySelector(`#content .organization[data-name=${organizationName}] .repos`);
+				const container=document.querySelector(`#content .organization[data-name=${organizationName}] .repos tbody`);
+				if(data.length>0) document.querySelector(`#content .organization[data-name=${organizationName}] .repos`).classList.remove('d-none');
 				data.forEach(repo=>{
 					const cardHtml= `
 						<tr>
@@ -105,7 +106,8 @@
 		.then(data => {
 		console.log(data);
 			const projects = data.data.organization.projectsV2.nodes;
-				const container=document.querySelector(`#content .organization[data-name=${organizationName}] .projects`);
+			const container=document.querySelector(`#content .organization[data-name=${organizationName}] .projects tbody`);
+			if(projects.length>0) document.querySelector(`#content .organization[data-name=${organizationName}] .projects`).classList.remove('d-none');
 			projects.forEach(project => {
 				const cardHtml = `
 						<tr>
