@@ -17,7 +17,7 @@
 	const organizations=['THE','LIST','OF','YOUR','ORGANIZATIONS'];
 
 	 /* Do not modify below this line */
-	const repo='NicholasCaporusso/github-organization-repo-project-manager';
+	const repo='NicholasCaporusso/github-organization-dashboard';
 
 	document.addEventListener("DOMContentLoaded",function(){
 		checkRepoUpdate();
@@ -146,8 +146,8 @@
 				localStorage.setItem('latestCommitSha', latestSha);
 				console.log("Initial commit SHA stored.");
 			}else if (storedSha !== latestSha) {
-				alert("The repository has been updated!");
-				localStorage.setItem('latestCommitSha', latestSha);
+				alert(`The repository has been updated, please download the latest version from https://github.com/${repo}!`);
+				//localStorage.setItem('latestCommitSha', latestSha);
 			}
 		}
 	}

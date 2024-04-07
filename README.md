@@ -1,5 +1,5 @@
-# GitHub organization repos and projects dashboard
-A little dashboard for managing the repositories and projects of your organizations.
+# GitHub organization dashboard
+A dashboard for managing the repositories and projects of your organizations.
 
 
 ## Usage
