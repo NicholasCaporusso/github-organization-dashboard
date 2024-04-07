@@ -3,16 +3,13 @@ A dashboard for managing the repositories and projects of your organizations.
 
 
 ## Usage
-1. Open `index.html` with a text file editor (e.g., NotePad++ or Visual Studio Code).
-2. Add your GitHub token
-3. Add the list of your organizations
-4. Load `index.html` in the browser
+1. Create your GitHub API access token (See instructions [below](#creating-your-github-api-access-token)).
+2. Load `index.html` in the browser
+3. Enter your GitHub API token
+4. Enter your organization names, separated by a comma.
 
 
-
-
-
-### Creating your API access token
+### Creating your GitHub API access token
 1. Click on your profile image
 ![image](https://github.com/NicholasCaporusso/github-organization-dashboard/assets/2097977/3b834162-ef1d-49f2-bfbd-ad0cca580d1e)
 
