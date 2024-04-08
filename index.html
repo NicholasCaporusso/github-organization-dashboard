@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GitHub Organization Dashboard</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 	<div class="container mt-5">
@@ -100,9 +101,10 @@
 			document.getElementById('content').innerHTML+=`<div class="organization" data-name="${organizations[i]}">
 					<h3>${organizations[i]}</h3>
 					<h5>Repositories</h5>
-					<table class="table repos d-none">
+					<table class="table table-striped repos d-none">
 						<thead>
 							<tr>
+							<th scope="col" width="10"></th>
 							<th scope="col">Name and description</th>
 							<th scope="col">Last updated</th>
 							</tr>
@@ -110,7 +112,7 @@
 						<tbody></tbody>
 					</table>
 					<h5>Projects</h5>
-					<table class="table projects d-none">
+					<table class="table table-striped projects d-none">
 						<thead>
 							<tr>
 							<th scope="col">Name and description</th>
@@ -130,11 +132,13 @@
 				'Authorization': `token ${localStorage.getItem(tokenKey)}`
 			}
 		}).then(response=>response.json()).then(data=>{
+				console.log(data)
 				const container=document.querySelector(`#content .organization[data-name=${organizationName}] .repos tbody`);
 				if(data.length>0) document.querySelector(`#content .organization[data-name=${organizationName}] .repos`).classList.remove('d-none');
 				data.forEach(repo=>{
 					const cardHtml= `
 						<tr>
+							<td><i class="text-muted fas fa-${repo.private && repo.private==true ? '' : 'un'}lock"></i></td>
 							<td>
 								<div><a href="${repo.html_url}" target="_blank">${repo.name}</a></div>
 								<small>${repo.description || ''}</small>
@@ -180,6 +184,7 @@
 		.then(data => {
 			const projects = data.data.organization.projectsV2.nodes;
 			const container=document.querySelector(`#content .organization[data-name=${organizationName}] .projects tbody`);
+		console.log(projects);
 			if(projects.length>0) document.querySelector(`#content .organization[data-name=${organizationName}] .projects`).classList.remove('d-none');
 			projects.forEach(project => {
 				const cardHtml = `
